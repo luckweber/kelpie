@@ -17,14 +17,14 @@ JFormHelper::loadFieldClass('list');
  *
  * @since  0.0.1
  */
-class JFormFieldHelloWorld extends JFormFieldList
+class JFormFieldVideos extends JFormFieldList
 {
 	/**
 	 * The field type.
 	 *
 	 * @var         string
 	 */
-	protected $type = 'Kelpie';
+	protected $type = 'Videos';
  
 	/**
 	 * Method to get a list of options for a list input.
@@ -35,11 +35,8 @@ class JFormFieldHelloWorld extends JFormFieldList
 	{
 		$db    = JFactory::getDBO();
 		$query = $db->getQuery(true);
-		$query->select('#__kp_video.id as id,title_video,#__kp_category.name as category,catid');
+		$query->select('id,title_video');
 		$query->from('#__kp_video');
-		$query->leftJoin('#__kp_category on catid = #__kp_category.id');
-		// Retrieve only published items
-		$query->where('#__kp_video.published = 1');
 		$db->setQuery((string) $query);
 		$messages = $db->loadObjectList();
 		$options  = array();
@@ -48,8 +45,7 @@ class JFormFieldHelloWorld extends JFormFieldList
 		{
 			foreach ($messages as $message)
 			{
-				$options[] = JHtml::_('select.option', $message->id, $message->greeting .
-				                      ($message->catid ? ' (' . $message->category . ')' : ''));
+				$options[] = JHtml::_('select.option', $message->id, $message->title_video);
 			}
 		}
  

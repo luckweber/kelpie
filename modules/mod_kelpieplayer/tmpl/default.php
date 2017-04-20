@@ -62,7 +62,7 @@ $doc = JFactory::getDocument();
 					<h1><?php echo $lists->title_video;?></h1>
 					
 	
-					<video width="<?php echo $width ;?>" height="<?php echo $height ;?>" controls>
+					<video width="<?php echo $width ;?>" height="<?php echo $height ;?>" poster="<?php echo $lists->thumb_video;?>" controls>
 					  <source src="<?php echo $lists->url_video;?>" type="video/mp4">
 					  <source src="movie.ogg" type="video/ogg">
 					Your browser does not support the video tag.

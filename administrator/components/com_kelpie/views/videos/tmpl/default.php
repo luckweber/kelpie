@@ -13,8 +13,12 @@ defined('_JEXEC') or die('Restricted access');
 JHtml::_('jquery.framework');
 JHtml::_('bootstrap.framework');
 jimport( 'joomla.html.html.jgrid' );
-
 JHtml::_('formbehavior.chosen', 'select');
+
+///JFormHelper::addFieldPath(JPATH_COMPONENT . '/models/fields');
+/////$cities = JFormHelper::loadFieldType('City', false);
+//$cityOptions=$cities->getOptions();
+
 
 
 $listOrder     = $this->escape($this->filter_order);
@@ -22,17 +26,8 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 
 
 $doc = JFactory::getDocument();
-
-//$doc->addStyleSheet( "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", "text/css", "screen" );
 $doc->addStyleSheet( JURI::root()."administrator/components/com_kelpie/assets/css/kelpie.css", "text/css", "screen" );
-
-
-//$doc->addScript("https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js" );
-//$doc->addScript("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" );
 $doc->addScript( JURI::root()."administrator/components/com_kelpie/assets/js/kelpie.js" );
-
-
-//JHTML::stylesheet('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
 
 ?>
 
@@ -58,7 +53,13 @@ $doc->addScript( JURI::root()."administrator/components/com_kelpie/assets/js/kel
 					'joomla.searchtools.default',
 					array('view' => $this)
 				);
+				
+				
 			?>
+			
+				<?php echo KelpieModelVideos::ListCategories( 'filter[catid]', '', 'class="required"' ); ?>
+			
+			
 		</div>
 	</div>
 	<table class="table table-striped table-hover">

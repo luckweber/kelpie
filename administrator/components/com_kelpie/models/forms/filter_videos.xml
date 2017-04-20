@@ -11,17 +11,6 @@
 		
 		
 		
-		<field
-				name="greeting"
-				type="text"
-				label="COM_HELLOWORLD_HELLOWORLD_GREETING_LABEL"
-				description="COM_HELLOWORLD_HELLOWORLD_GREETING_DESC"
-				size="40"
-				class="inputbox validate-greeting"
-				validate="greeting"
-				required="true"
-				default=""
-				/>
 		
 		
 		<field
@@ -35,16 +24,19 @@
 			<option value="">JOPTION_SELECT_PUBLISHED</option>
 		</field>
 		
+		
+		
 		<field
-			name="category_id"
-			type="category"
-			label="JOPTION_FILTER_CATEGORY"
-			extension="com_semanafluminense"
-			description="JOPTION_FILTER_CATEGORY_DESC"
-			onchange="this.form.submit();"
-			published="0,1,2"
-			>
-			<option value="">JOPTION_SELECT_CATEGORY</option>
+				name="catid"
+				type="category"
+				extension="com_kelpie"
+				class="inputbox"
+				default=""
+				label="COM_HELLOWORLD_HELLOWORLD_FIELD_CATID_LABEL"
+				description="COM_HELLOWORLD_HELLOWORLD_FIELD_CATID_DESC"
+				required="true"
+		>
+			<option value="0">JOPTION_SELECT_CATEGORY</option>
 		</field>
 	</fields>
 	
