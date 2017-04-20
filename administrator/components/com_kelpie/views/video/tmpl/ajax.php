@@ -43,45 +43,102 @@
 <?php if($index == 1):?>
 <div>
 	<label id="jform_url_video-lbl" for="jform_url_video" class="hasPopover" title="" data-content="Description" data-original-title="Video">Video</label>
-	<input name="jform[url_video]"  value="<?php echo $url;?>" id="jform_url_video"  class="inputbox inputbox1" type="text"><input type="file"  class="classfile input1"/><button class="button_upload1">Browser</button>
+	<input name="jform[url_video]"  value="<?php echo $url;?>" id="jform_url_video"  class="inputbox inputbox1" type="text"><input type="file" accept=".mp4" class="classfile input1"/><button class="button_upload1">Browser</button>
 </div>
 <div>
 	<label id="jform_url_hd_video-lbl" for="jform_url_hd_video" class="hasPopover" title="" data-content="Description" data-original-title="Video HD">Video HD</label>
-	<input name="jform[url_hd_video]"  value="<?php echo $url_hd;?>" id="jform_url_hd_video"  class="inputbox" type="text"><button class="button_upload2">Browser</button>
+	<input name="jform[url_hd_video]"  value="<?php echo $url_hd;?>" id="jform_url_hd_video"   class="inputbox inputbox2" type="text"><button class="button_upload2">Browser</button>
+</div>
 <div>
+	<label id="jform_thumb_video-lbl" for="jform_thumb_video" class="hasPopover" title="" data-content="Description" data-original-title="Thumb Video">Thumb Video</label>
+	<input name="jform[thumb_video]"  value="<?php echo $thumb_video;?>" id="jform_thumb_video"   class="inputbox inputbox3" type="text"><button class="button_upload3">Browser</button>
+</div>
+<div>
+	<label id="jform_preview_video-lbl" for="jform_preview_video" class="hasPopover" title="" data-content="Description" data-original-title="Preview Video">Preview Video</label>
+	<input name="jform[preview_video]"  value="<?php echo $preview_video;?>" id="jform_preview_video"   class="inputbox inputbox4" type="text"><button class="button_upload4">Browser</button>
+</div>
+
+<?php endif;?>
+
+
+<?php if($index == 2):?>
+<div>
+	<label id="jform_url_video-lbl" for="jform_url_video" class="hasPopover" title="" data-content="Description" data-original-title="Video">Video</label>
+	<input name="jform[url_video]"  value="<?php echo $url;?>" id="jform_url_video"  class="inputbox" type="text">
+</div>
 </div>
 	<label id="jform_thumb_video-lbl" for="jform_thumb_video" class="hasPopover" title="" data-content="Description" data-original-title="Thumb Video">Thumb Video</label>
-	<input name="jform[thumb_video]"  value="<?php echo $thumb_video;?>" id="jform_thumb_video"  class="inputbox" type="text"><button class="button_upload">Browser</button>
+	<input name="jform[thumb_video]"  value="<?php echo $thumb_video;?>" id="jform_thumb_video"  class="inputbox" type="text">
 <div>
 <div>
 	<label id="jform_preview_video-lbl" for="jform_preview_video" class="hasPopover" title="" data-content="Description" data-original-title="Preview Video">Preview Video</label>
-	<input name="jform[preview_video]"  value="<?php echo $preview_video;?>" id="jform_preview_video"  class="inputbox" type="text"><button class="button_upload">Browser</button>
+	<input name="jform[preview_video]"  value="<?php echo $preview_video;?>" id="jform_preview_video"  class="inputbox" type="text">
 </div>
-
 <?php endif;?>
 
 <script>
 
 	jQuery(function($){
-		
+		$(".upload_browser").css("display", "none");
 		var form;
 		className = "";
 		var path = "<?php echo $path;?>";
 		
 		$(".classfile").css("display","none");
 		
+		$(".button_browser").click(function(event){
+			event.preventDefault(); 
+			$(".upload_browser").click();
+		});
+		
+	
+	
 		$(".button_upload1").click(function(event){
 			event.preventDefault(); 
-			$(".input1").click();
+			var father = $(this).parent('div');
+			var getClass = father.find('input').attr("class").split(' ');
+			className = getClass[1];
+			$(".kelpie_modal").css("display","block");
+			$(".msn_upload1").val(" ");
+			$(".upload_browser").attr("accept",".mp4, .mv4, .flv");
 		});
 		
 		
 		$(".button_upload2").click(function(event){
 			event.preventDefault(); 
+			var father = $(this).parent('div');
+			var getClass = father.find('input').attr("class").split(' ');
+			className = getClass[1];
 			$(".kelpie_modal").css("display","block");
-			
-			className = $(this).getClass();
+			$(".msn_upload1").val(" ");
+			$(".upload_browser").attr("accept",".mp4, .mv4, .flv");
 		});
+		
+		
+		$(".button_upload3").click(function(event){
+			event.preventDefault(); 
+			father3 = $(this).parent('div');
+			getClass3 = father3.find('input').attr("class").split(' ');
+			className = getClass3[1];
+			$(".kelpie_modal").css("display","block");
+			$(".msn_upload1").val(" ");
+			$(".upload_browser").attr("accept","image/*");
+			
+		});
+		
+		
+		
+		$(".button_upload4").click(function(event){
+			event.preventDefault(); 
+			father3 = $(this).parent('div');
+			getClass3 = father3.find('input').attr("class").split(' ');
+			className = getClass3[1];
+			$(".kelpie_modal").css("display","block");
+			$(".msn_upload1").val(" ");
+			$(".upload_browser").attr("accept",".mp4, .mv4, .flv");
+
+		});
+		
 		
 		$(".close").click(function(event){
 			$(".kelpie_modal").css("display","none");
@@ -94,13 +151,15 @@
 		
 		$(".button_send").click(function(events){
 			events.preventDefault();
-			alert(className);
+			//alert(className);
+			$("."+className).val($(".msn_upload1").val());
+			$(".kelpie_modal").css("display","none");
 		
 		});
 		
 		
-		$(".input1").change(function(event){
-			var value = $(".input1").val();
+		$(".upload_browser").change(function(event){
+			var value = $(".upload_browser").val();
 			//$(".inputbox1").val(value);
 			
 			form = new FormData();
@@ -125,6 +184,7 @@
 						$(".msn_error").css("display","block");
 					}else{
 						$(".msn_sucess").css("display","block");
+						$(".button_send").css("display","block");
 					}	
 				}
 			});

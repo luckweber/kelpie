@@ -1,5 +1,24 @@
 @media only screen and (max-width : 1920px) {
 	
+	.button_upload1{
+		
+	}
+	
+	.upload_browser{
+		
+		display:none;
+		
+	}
+	
+	.msn_upload1{
+		
+	}
+	
+	.panel_upload_input{
+		
+	margin-top: 100px;
+	}
+	
 	.msn_error{
 		color:red;
 		display:    none;
@@ -7,15 +26,37 @@
 	
 	.button_send{
 		position: relative;
-		margin-top:200px;
+		margin-top:76px;
 		float:right;
 		background-color:green;
 		color:white;
+		height: 34px;
+		border-radius: 15px;
+		width: 100px;
+		border: 1px solid black;
+		margin-left: 10px;
+		display:none;
+	}
+	
+	.button_close{
+		position: relative;
+		margin-top:76px;
+		float:right;
+		background-color:red;
+		color:white;
+		height: 34px;
+		border-radius: 15px;
+		width: 100px;
+		border: 1px solid black;
+		margin-left: 10px;
 	}
 	
 	.msn_sucess{
 		color:green;
 		display:    none;
+		font-size: 19px;
+		font-weight: bold;
+		margin-top: 10px;
 	}
 	
 	.kelpie_modal_loading {
@@ -285,6 +326,25 @@
 }
 
 @media only screen and (max-width : 1200px) {
+	
+	.upload_browser{
+		
+		display:none;
+		
+	}
+	
+	.button_upload1{
+		
+	}
+	
+	.msn_upload1{
+		
+	width: 63%;
+	height: 42%;
+	}
+	
+	
+	
 	.kelpie_painel{
 		position:absolute;
 		width:95%;
@@ -467,6 +527,16 @@
 }
 
 @media only screen and (max-width : 979px) {
+	
+	
+	.button_upload1{
+		
+	}
+	
+	.msn_upload1{
+		
+	}
+	
 	.kelpie_painel{
 		position:absolute;
 		width:100%;

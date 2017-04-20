@@ -43,6 +43,8 @@ $doc->addStyleSheet( JURI::root()."administrator/components/com_kelpie/assets/cs
 					<div id="upload_list">
 						
 						<input type="hidden"  class="pathfile" value="<?php echo JPATH_ROOT;?>"/>
+						<input type="hidden"  class="getclass" value=""/>
+
 						<?php 
 						
 							
@@ -69,9 +71,11 @@ $doc->addStyleSheet( JURI::root()."administrator/components/com_kelpie/assets/cs
 							<div class="kelpie_modal-body">
 								<p class="msn_error">Error Upload</p>	
 								<p class="msn_sucess">Sucess Upload</p>
-							  <p><input type="text" class="msn_upload1"/><button class="button_upload1 btn-success">Upload</button></p>
-							  <p><button class="button_send">Send</button></p>
-
+							  <div class="panel_upload_input">
+								<input type="file" class="upload_browser" />
+								<p><input type="text" class="msn_upload1"/><button class="button_browser btn-success">Upload</button></p>
+								<p><button class="button_send">Send</button><button class="button_close">Close</button></p>
+							</div>
 							 
 							</div>
 							<div class="kelpie_modal-footer">
