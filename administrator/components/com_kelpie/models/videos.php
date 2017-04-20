@@ -39,6 +39,9 @@ class KelpieModelVideos extends JModelList
 	 */
 	protected function getListQuery()
 	{
+		$app = JFactory::getApplication();
+		$context = "kelpie.list.admin.kelpie";
+		
 		// Initialize variables.
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
@@ -59,8 +62,8 @@ class KelpieModelVideos extends JModelList
 		$query->from('#__kp_video AS video');
 		
 		
-		$query->select('categoria.title AS category_title')
-			->join('LEFT', '#__categories AS categoria ON categoria.id = video.catid');
+		$query->select('categoria.name AS category_title')
+			->join('LEFT', '#__kp_category AS categoria ON categoria.id = video.catid');
 		
 		
 		// Filter by search in title.
@@ -73,6 +76,7 @@ class KelpieModelVideos extends JModelList
 		// Filter by a single or group of categories.
 		$baselevel = 1;
 		$categoryId = $this->getState('filter.category_id');
+
 
 		if (is_numeric($categoryId))
 		{
@@ -113,6 +117,14 @@ class KelpieModelVideos extends JModelList
 		$query->order($db->escape($orderCol) . ' ' . $db->escape($orderDirn));		
  
 		return $query;
+	}
+	
+	protected function populateState ($ordering = null, $direction = null){
+		
+		$categoryId = $this->getUserStateFromRequest($this->context . '.filter.greeting', 'filter_greeting');
+		$this->setState('filter.greeting', $categoryId);
+
+    // and so on .....
 	}
 	
 	public function getItems()

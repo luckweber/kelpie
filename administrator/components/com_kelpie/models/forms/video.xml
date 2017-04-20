@@ -223,8 +223,7 @@
 				
 				<field
 				name="catid"
-				type="category"
-				extension="com_semanafluminense"
+				type="hidden"
 				class="inputbox"
 				default=""
 				label="COM_KELPIE_VIDEO_FIELD_CATID_LABEL"

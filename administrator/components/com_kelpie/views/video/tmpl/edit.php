@@ -46,7 +46,6 @@ $doc->addStyleSheet( JURI::root()."administrator/components/com_kelpie/assets/cs
 						<input type="hidden"  class="getclass" value=""/>
 
 						<?php 
-						
 							
 						?>	
 						<div>
@@ -93,50 +92,24 @@ $doc->addStyleSheet( JURI::root()."administrator/components/com_kelpie/assets/cs
 				</div>		
 			</div>	
 			<div class="span3">
+			
 				<?php echo JLayoutHelper::render('joomla.edit.global', $this); ?>
+				
+				<div>
+					<label id="jform_catid-lbl" for="jform_catid" class="hasPopover" title="" data-content="<?php echo JText::_('COM_KELPIE_VIDEO_FIELD_CATID_DESC');?>" data-original-title="<?php echo JText::_('COM_KELPIE_VIDEO_FIELD_CATID_LABEL');?>"><?php echo JText::_('COM_KELPIE_VIDEO_FIELD_CATID_LABEL');?></label>
+					<?php echo $this->full; ?>
 
+				</div>
 			</div>
 			
 			<div class="span2">
 				<?php echo $this->form->getLabel('vote_good'); ?>
 				<?php echo $this->form->getInput('vote_good'); ?>
-
-
+		
+				
 			</div>
 		</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
-		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'images', JText::_('JGLOBAL_FIELDSET_IMAGE_OPTIONS')); ?>
-<div class="row-fluid">
-			<div class="span6">
-					<?php echo $this->form->renderField('images'); ?>
-					<?php foreach ($this->form->getGroup('images') as $field) : ?>
-						<?php echo $field->renderField(); ?>
-					<?php endforeach; ?>
-				</div>
-			</div>
-		<?php echo JHtml::_('bootstrap.endTab'); ?>
-        <?php echo JHtml::_('bootstrap.addTab', 'myTab', 'autor', JText::_('COM_SEMANAFLUMINENSE_ABA_AUTOR')); ?>
-    		
-		<div class="row-fluid">
-			<div class="span6">
-					<?php echo $this->form->renderField('autor_nome_poesia'); ?>
-					<?php echo $this->form->renderField('autor_nome_artistico_poesia'); ?>
-					<?php echo $this->form->renderField('autor_data_nascimento_poesia'); ?>
-
-				</div>
-			</div>	
-			<?php echo JHtml::_('bootstrap.endTab'); ?>
-<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'publishing', JText::_('COM_CONTENT_FIELDSET_PUBLISHING')); ?>
-			<div class="row-fluid form-horizontal-desktop">
-				<div class="span6">
-					<?php echo JLayoutHelper::render('joomla.edit.publishingdata', $this); ?>
-				
-				</div>
-				<div class="span6">
-					<?php echo JLayoutHelper::render('joomla.edit.metadata', $this); ?>
-				</div>
-			</div>
-			<?php echo JHtml::_('bootstrap.endTab'); ?>
         </fieldset>
     </div>
     <input type="hidden" name="task" value="video.edit" />

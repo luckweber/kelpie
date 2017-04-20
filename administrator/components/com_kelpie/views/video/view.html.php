@@ -33,7 +33,8 @@ class kelpieViewVideo extends JViewLegacy
 		
 		$this->form = $this->get('Form');
 		$this->item = $this->get('Item');
-		
+		$this->full  = KelpieModelVideo::ListCategories("jform[catid]", $this->item->catid);
+
 		
 		// Display the view
 		parent::display($tpl);

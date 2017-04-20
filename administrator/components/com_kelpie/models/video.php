@@ -62,6 +62,65 @@ class KelpieModelVideo extends JModelAdmin
  
 		return $form;
 	}
+	
+	
+	public static function getCategories( $exclude_category = '' ) {
+	
+        $db = JFactory::getDBO();
+		
+		$query = 'SELECT * FROM #__kp_category';
+		
+		if( ! empty( $exclude_category ) ) {
+			$query .= ' WHERE name!=' . $db->quote( $exclude_category );
+		}
+		
+		$query .= ' ORDER BY ordering ASC';
+		$db->setQuery( $query );
+		$mitems = $db->loadObjectList();
+		
+		$children = array();
+		if( $mitems ) {
+			foreach( $mitems as $v ) {
+				$v->title = $v->name;
+				$v->parent_id = $v->parent;
+				$pt = $v->parent;				
+				$list = @$children[ $pt ] ? $children[ $pt ] : array();
+				array_push( $list, $v );
+				$children[ $pt ] = $list;
+			}
+		}
+		
+		$list = JHTML::_( 'menu.treerecurse', 0, '', array(), $children, 9999, 0, 0 );	
+			
+		return $list;
+		
+	}
+	
+	public static function ListCategories( $name = 'category', $selected = '', $script = '', $exclude_category = '' ) {
+
+		if( 'parent' == $name ) {		
+			$options[] = JHTML::_( 'select.option', 0, '-- '.JText::_( 'ROOT' ).' --' );
+			if( '' == $selected ) $selected = 0;
+		} else {
+			$options[] = JHTML::_( 'select.option', '', '-- '.JText::_( 'SELECT_A_CATEGORY' ).' --' );
+		}
+		
+		if( ! empty( $exclude_category ) ) {
+			$items = KelpieModelVideo::getCategories( $exclude_category );
+		} else {
+			$items = KelpieModelVideo::getCategories();
+		}
+		
+		foreach( $items as $item ) {
+			$item->treename = JString::str_ireplace( '&#160;', '-', $item->treename );
+			$value = ( 'category' == $name || 'filter_category' == $name ) ? $item->name : $item->id;
+			
+			$options[] = JHTML::_( 'select.option', $value, $item->treename );
+		}
+		
+		return JHTML::_( 'select.genericlist', $options, $name, $script, 'value', 'text', $selected,'jform_catid' );
+
+	}
  
 	/**
 	 * Method to get the data that should be injected in the form.
