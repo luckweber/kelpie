@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form
+				addrulepath="/administrator/components/com_semanafluminense/models/rules"
+>
+	<fieldset>
+				
+				
+				<field
+					name="title_video"
+					type="text"
+					label="COM_KELPIE_VIDEO_NAME"
+					description="COM_HELLOWORLD_HELLOWORLD_GREETING_DESC"
+					size="40"
+					class="inputbox"
+					default=""
+				/>
+				
+				
+				
+				<field
+					name="text_video"
+					type="editor"
+					buttons="true"
+					label="COM_KELPIE_VIDEO_CONTENT_TEXT_LABEL"
+					description="COM_KELPIE_VIDEO_CONTENT_TEXT_DESC"
+					class="inputbox"
+					filter="JComponentHelper::filterText"
+					asset_id="com_content"
+					required = "true"
+					hide="readmore,pagebreak,image,article,module"
+				/>
+				
+				
+				
+				
+				<field name="type_video" 
+					type="list"
+					class="kelpie_type_video"
+					label="COM_KELPIE_VIDEO_TYPE_TEXT_LABEL"
+					description="COM_KELPIE_VIDEO_TYPE_TEXT_DESC"
+					default="0"
+				>
+					<option value="0">COM_KELPIE_VIDEO_TYPE_TEXT_OPTION_1</option>
+					<option value="1">COM_KELPIE_VIDEO_TYPE_TEXT_OPTION_2</option>
+					<option value="2">COM_KELPIE_VIDEO_TYPE_TEXT_OPTION_3</option>
+					<option value="4">COM_KELPIE_VIDEO_TYPE_TEXT_OPTION_4</option>
+					<option value="5">COM_KELPIE_VIDEO_TYPE_TEXT_OPTION_5</option>
+				</field>
+				
+				
+				<field
+					name="url_video"
+					type="hidden"
+					buttons="true"
+					label="COM_KELPIE_VIDEO_URL_TEXT_LABEL"
+					description="COM_KELPIE_VIDEO_URL_TEXT_DESC"
+					class="inputbox url"
+				/>
+				
+				<field
+					name="url_hd_video"
+					type="hidden"
+					buttons="true"
+					label="COM_KELPIE_VIDEO_URL_HD_TEXT_LABEL"
+					description="COM_KELPIE_VIDEO_URL_HD_TEXT_DESC"
+					class="inputbox url_hd"
+				/>
+				
+				
+				<field
+					name="thumb_video"
+					type="hidden"
+					buttons="true"
+					label="COM_KELPIE_VIDEO_THUMB_TEXT_LABEL"
+					description="COM_KELPIE_VIDEO_THUMB_TEXT_DESC"
+					class="inputbox thumb_video"
+				/>
+				
+				<field
+					name="preview_video"
+					type="hidden"
+					buttons="true"
+					label="COM_KELPIE_VIDEO_PREVIEW_TEXT_LABEL"
+					description="COM_KELPIE_VIDEO_PREVIEW_TEXT_DESC"
+					class="inputbox preview_video"
+				/>
+				
+				
+				
+			
+				
+				<field
+				name="autor_nome_poesia"
+				type="text"
+				label="COM_SEMANAFLUMINENSE_SEMANAFLUMINENSE_NOME_POESIA"
+				description="COM_HELLOWORLD_HELLOWORLD_GREETING_DESC"
+				size="40"
+				class="inputbox"
+				default=""
+				/>
+				
+				<field
+				name="autor_nome_artistico_poesia"
+				type="text"
+				label="COM_SEMANAFLUMINENSE_SEMANAFLUMINENSE_NOME_ARTISTICO_POESIA"
+				description="COM_HELLOWORLD_HELLOWORLD_GREETING_DESC"
+				size="40"
+				class="inputbox"
+				default=""
+				/>
+				
+				<field
+				name="autor_data_nascimento_poesia"
+				type="text"
+				label="COM_SEMANAFLUMINENSE_SEMANAFLUMINENSE_DATA_NASCIMENTO_POESIA"
+				description="COM_HELLOWORLD_HELLOWORLD_GREETING_DESC"
+				size="40"
+				class="inputbox"
+				default=""
+				/>
+				
+				
+				<field
+				name="autor_sexo_poesia"
+				type="text"
+				label="COM_SEMANAFLUMINENSE_SEMANAFLUMINENSE_SEXO_POESIA"
+				description="COM_HELLOWORLD_HELLOWORLD_GREETING_DESC"
+				size="40"
+				class="inputbox"
+				default=""
+				/>
+				
+				<field
+				name="autor_sexo_poesia"
+				type="text"
+				label="COM_SEMANAFLUMINENSE_SEMANAFLUMINENSE_SEXO_POESIA"
+				description="COM_HELLOWORLD_HELLOWORLD_GREETING_DESC"
+				size="40"
+				class="inputbox"
+				default=""
+				/>
+				
+				
+				
+		<field
+				name="id"
+				type="text"
+				label="COM_SEMANAFLUMINENSE_SEMANAFLUMINENSE_INCRICAO_POESIA"
+				description="COM_HELLOWORLD_HELLOWORLD_GREETING_DESC"
+				size="40"
+				class="readonly"
+				readonly="true"
+				default=""
+				/>
+
+				
+	
+				
+			<field name="publish_up" type="calendar"
+			label="COM_CONTENT_FIELD_PUBLISH_UP_LABEL" description="COM_CONTENT_FIELD_PUBLISH_UP_DESC"
+			format="%Y-%m-%d %H:%M:%S" size="22"
+			filter="user_utc" />
+
+		<field name="publish_down" type="calendar"
+			label="COM_CONTENT_FIELD_PUBLISH_DOWN_LABEL" description="COM_CONTENT_FIELD_PUBLISH_DOWN_DESC"
+			format="%Y-%m-%d %H:%M:%S" size="22"
+			filter="user_utc" />
+
+<field name="featured" type="radio"
+			class="btn-group btn-group-yesno"
+			label="JFEATURED"
+			description="COM_CONTENT_FIELD_FEATURED_DESC"
+			default="0"
+		>
+			<option value="1">JYES</option>
+			<option value="0">JNO</option>
+		</field>
+
+<field name="tags"
+			type="tag"
+			label="JTAG"
+			description="JTAG_DESC"
+			class="span12"
+			multiple="true"
+		/>		
+				
+			
+		
+		<field
+				name="vote_good"
+				type="text"
+				label="COM_KELPIE_VIDEO_VOTE_LABEL"
+				description="COM_KELPIE_VIDEO_GREETING_DESC"
+				class="span12"
+				required="true"
+				default=""
+				/>
+		
+		<field
+			id="published"
+			name="published"
+			type="list"
+			label="COM_KELPIE_VIDEO_STATUS_LABEL"
+			description="JFIELD_PUBLISHED_DESC"
+			class="chzn-color-state"
+			size="1"
+			default="1">
+			<option
+				value="1">
+				JPUBLISHED</option>
+			<option
+				value="0">
+				JUNPUBLISHED</option>
+			<option
+				value="2">
+				JARCHIVED</option>
+			<option
+				value="-2">
+				JTRASHED</option>
+		</field>
+		
+		
+				
+				<field
+				name="catid"
+				type="category"
+				extension="com_semanafluminense"
+				class="inputbox"
+				default=""
+				label="COM_KELPIE_VIDEO_FIELD_CATID_LABEL"
+				description="COM_KELPIE_VIDEO_FIELD_CATID_DESC"
+				required="true"
+		>
+			<option value="0">JOPTION_SELECT_CATEGORY</option>
+		</field>
+	</fieldset>
+	
+	
+	<fields name="images">
+		<fieldset name="image-intro">
+			<field
+				name="image_intro"
+				type="media"
+				label="COM_CONTENT_FIELD_INTRO_LABEL"
+				description="COM_CONTENT_FIELD_INTRO_DESC" />
+			<field name="image_intro_alt"
+				type="text"
+				label="COM_CONTENT_FIELD_IMAGE_ALT_LABEL"
+				description="COM_CONTENT_FIELD_IMAGE_ALT_DESC"
+				class="inputbox"
+				size="20" />
+			<field name="image_intro_caption"
+				type="text"
+				label="COM_CONTENT_FIELD_IMAGE_CAPTION_LABEL"
+				description="COM_CONTENT_FIELD_IMAGE_CAPTION_DESC"
+				class="inputbox"
+				size="20" />
+			<field
+				name="float_intro"
+				type="list"
+				label="COM_CONTENT_FLOAT_INTRO_LABEL"
+				description="COM_CONTENT_FLOAT_DESC">
+					<option value="">JGLOBAL_USE_GLOBAL</option>
+					<option value="right">COM_CONTENT_RIGHT</option>
+					<option value="left">COM_CONTENT_LEFT</option>
+					<option value="none">COM_CONTENT_NONE</option>
+			</field>
+			</fieldset>
+			<fieldset name="image-full">
+			<field
+				name="image_fulltext"
+				type="media"
+				label="COM_CONTENT_FIELD_FULL_LABEL"
+				description="COM_CONTENT_FIELD_FULL_DESC" />
+			<field name="image_fulltext_alt"
+				type="text"
+				label="COM_CONTENT_FIELD_IMAGE_ALT_LABEL"
+				description="COM_CONTENT_FIELD_IMAGE_ALT_DESC"
+				class="inputbox"
+				size="20" />
+			<field name="image_fulltext_caption"
+				type="text"
+				label="COM_CONTENT_FIELD_IMAGE_CAPTION_LABEL"
+				description="COM_CONTENT_FIELD_IMAGE_CAPTION_DESC"
+				class="inputbox"
+				size="20" />
+			<field
+				name="float_fulltext"
+				type="list"
+				label="COM_CONTENT_FLOAT_FULLTEXT_LABEL"
+				description="COM_CONTENT_FLOAT_DESC">
+					<option value="">JGLOBAL_USE_GLOBAL</option>
+					<option value="right">COM_CONTENT_RIGHT</option>
+					<option value="left">COM_CONTENT_LEFT</option>
+					<option value="none">COM_CONTENT_NONE</option>
+			</field>
+			</fieldset>
+		</fields>
+</form>

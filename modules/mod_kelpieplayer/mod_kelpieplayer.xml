@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1.0" client="site" method="upgrade">
+    <name>Kelpie - Player</name>
+    <author>Thiago pereira da Silva</author>
+    <version>1.0.0</version>
+    <description>A simple Hello, World! module.</description>
+    <files>
+        <filename>mod_kelpieplayer.xml</filename>
+        <filename module="mod_kelpieplayer">mod_kelpieplayer.php</filename>
+        <filename>index.html</filename>
+        <filename>helper.php</filename>
+        <filename>tmpl/default.php</filename>
+        <filename>tmpl/index.html</filename>
+    </files>
+     <config>
+		<fields name="params">
+			<fieldset name="basic">
+				
+				
+				<field
+					name="listop"
+					type="list"
+					label="Select"
+					description="MOD_MENU_FIELD_STARTLEVEL_DESC"
+					default="0"
+					>
+					<option value="0">ID</option>
+					<option value="1">Category</option>
+				</field>
+				
+				
+				<field
+					name="inputid"
+					type="text"
+					label="Input ID"
+					description="MOD_MENU_FIELD_STARTLEVEL_DESC"
+					default="0"
+					>
+					<option value="0">ID</option>
+					<option value="1">Category</option>
+				</field>
+				
+				<field
+					name="menutype"
+					type="category"
+					label="Categories"
+					description="MOD_MENU_FIELD_MENUTYPE_DESC"
+					extension="com_semanafluminense"
+				/>
+
+				
+
+			</fieldset>
+
+			<fieldset name="advanced">
+				<field
+					name="tag_id"
+					type="text"
+					label="MOD_MENU_FIELD_TAG_ID_LABEL"
+					description="MOD_MENU_FIELD_TAG_ID_DESC"
+				/>
+
+				<field
+					name="class_sfx"
+					type="text"
+					label="MOD_MENU_FIELD_CLASS_LABEL"
+					description="MOD_MENU_FIELD_CLASS_DESC"
+				/>
+
+				<field
+					name="window_open"
+					type="text"
+					label="MOD_MENU_FIELD_TARGET_LABEL"
+					description="MOD_MENU_FIELD_TARGET_DESC"
+				/>
+
+				<field
+					name="layout"
+					type="modulelayout"
+					label="JFIELD_ALT_LAYOUT_LABEL"
+					description="JFIELD_ALT_MODULE_LAYOUT_DESC"
+				/>
+
+				<field
+					name="moduleclass_sfx"
+					type="textarea"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"
+					rows="3"
+				/>
+
+				<field
+					name="cache"
+					type="list"
+					label="COM_MODULES_FIELD_CACHING_LABEL"
+					description="COM_MODULES_FIELD_CACHING_DESC"
+					default="1"
+					>
+					<option value="1">JGLOBAL_USE_GLOBAL</option>
+					<option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+
+				<field
+					name="cache_time"
+					type="text"
+					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+					description="COM_MODULES_FIELD_CACHE_TIME_DESC"
+					default="900"
+				/>
+
+				<field
+					name="cachemode"
+					type="hidden"
+					default="itemid"
+					>
+					<option value="itemid"></option>
+				</field>
+			</fieldset>
+		</fields>
+    </config>
+</extension>

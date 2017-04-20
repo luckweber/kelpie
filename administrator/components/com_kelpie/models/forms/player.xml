@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form
+				addrulepath="/administrator/components/com_semanafluminense/models/rules"
+>
+	<fieldset>
+				
+				
+				<field
+					name="name"
+					type="text"
+					label="COM_KELPIE_PLAYER_NAME"
+					description="COM_KELPIE_PLAYER_NAME_DESC"
+					size="40"
+					class="inputbox"
+					default=""
+				/>
+				
+				
+				<field
+					name="width"
+					type="text"
+					label="COM_KELPIE_PLAYER_WIDTH"
+					description="COM_KELPIE_PLAYER_WIDTH_DESC"
+					size="40"
+					class="inputbox"
+					default=""
+				/>
+				
+				
+				<field
+					name="height"
+					type="text"
+					label="COM_KELPIE_PLAYER_HEIGHT"
+					description="COM_KELPIE_PLAYER_HEIGHT_DESC"
+					size="40"
+					class="inputbox"
+					default=""
+				/>
+				
+				
+				<field name="type" type="radio"
+					class="btn-group btn-group-yesno"
+					label="COM_KELPIE_PLAYER_TYPE"
+					description="COM_KELPIE_PLAYER_DESC"
+					default="flash"
+				>
+					<option value="flash">Flash</option>
+					<option value="html5">HTML5</option>
+				</field>
+				
+			
+				
+				
+				
+				
+		<field
+				name="id"
+				type="text"
+				label="COM_SEMANAFLUMINENSE_SEMANAFLUMINENSE_INCRICAO_POESIA"
+				description="COM_HELLOWORLD_HELLOWORLD_GREETING_DESC"
+				size="40"
+				class="readonly"
+				readonly="true"
+				default=""
+				/>
+
+				
+	
+				
+			<field name="publish_up" type="calendar"
+			label="COM_CONTENT_FIELD_PUBLISH_UP_LABEL" description="COM_CONTENT_FIELD_PUBLISH_UP_DESC"
+			format="%Y-%m-%d %H:%M:%S" size="22"
+			filter="user_utc" />
+
+		<field name="publish_down" type="calendar"
+			label="COM_CONTENT_FIELD_PUBLISH_DOWN_LABEL" description="COM_CONTENT_FIELD_PUBLISH_DOWN_DESC"
+			format="%Y-%m-%d %H:%M:%S" size="22"
+			filter="user_utc" />
+
+<field name="featured" type="radio"
+			class="btn-group btn-group-yesno"
+			label="JFEATURED"
+			description="COM_CONTENT_FIELD_FEATURED_DESC"
+			default="0"
+		>
+			<option value="1">JYES</option>
+			<option value="0">JNO</option>
+		</field>
+
+<field name="tags"
+			type="tag"
+			label="JTAG"
+			description="JTAG_DESC"
+			class="span12"
+			multiple="true"
+		/>		
+				
+			
+		
+	
+		<field
+			id="published"
+			name="published"
+			type="list"
+			label="COM_KELPIE_VIDEO_STATUS_LABEL"
+			description="JFIELD_PUBLISHED_DESC"
+			class="chzn-color-state"
+			size="1"
+			default="1">
+			<option
+				value="1">
+				JPUBLISHED</option>
+			<option
+				value="0">
+				JUNPUBLISHED</option>
+			<option
+				value="2">
+				JARCHIVED</option>
+			<option
+				value="-2">
+				JTRASHED</option>
+		</field>
+		
+	</fieldset>
+	
+	
+	
+</form>
