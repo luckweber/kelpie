@@ -56,16 +56,18 @@ class kelpieViewVideo extends JViewLegacy
  
 		if ($isNew)
 		{
-			$title = JText::_('COM_SEMANAFLUMINENSE_MANAGER_FOTOS_CRIAR');
+			$title = JText::_('COM_KELPIE_VIDEO_ADD');
 		}
 		else
 		{
-			$title = JText::_('COM_SEMANAFLUMINENSE_MANAGER_FOTOS_EDITAR');
+			$title = JText::_('COM_KELPIE_VIDEO_EDIT');
 		}
  		JToolBarHelper::apply('video.apply', 'JTOOLBAR_APPLY');
 
 		JToolBarHelper::title($title, 'video');
+		JToolbarHelper::save2new('video.save2new');
 		JToolBarHelper::save('video.save');
+		
 		JToolBarHelper::cancel(
 			'video.cancel',
 			$isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE'

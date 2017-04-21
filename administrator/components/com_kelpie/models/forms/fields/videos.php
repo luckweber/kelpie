@@ -53,4 +53,10 @@ class JFormFieldVideos extends JFormFieldList
  
 		return $options;
 	}
+	
+	public static options(){
+		
+		
+			return getOptions();
+	}
 }

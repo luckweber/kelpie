@@ -50,9 +50,9 @@ class KelpieViewDashBoard extends JViewLegacy
 		JLoader::register('CategoriesHelper', JPATH_ADMINISTRATOR . '/components/com_categories/helpers/categories.php');
 
         JToolBarHelper::title( 'DashBoard', 'kelpie' );
-        JToolBarHelper::addNew();
-        JToolBarHelper::deleteList();
-        JToolBarHelper::editList();
+        //JToolBarHelper::addNew();
+        //JToolBarHelper::deleteList();
+        //JToolBarHelper::editList();
 		JToolBarHelper::preferences('com_kelpie', '500');
     }
 }

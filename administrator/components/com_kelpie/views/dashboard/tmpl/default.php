@@ -44,21 +44,26 @@ $doc->addScript( JURI::root()."administrator/components/com_kelpie/assets/js/kel
 	<div class="kelpie_content">
 		<div class="kelpie_content_icon">
 			<div class="kelpie_content_icon_fig">
-				<a href="index.php?option=com_kelpie&view=video&layout=edit"><img src="<?php echo JURI::root()."administrator/components/com_kelpie/assets/images/addmovie.png";?>">
+				<a href="index.php?option=com_kelpie&view=video&layout=edit">
+					<img src="<?php echo JURI::root()."administrator/components/com_kelpie/assets/images/addmovie.png";?>">
 				<span>Add Video</span>
 				</a>
 			</div>
 			<div class="kelpie_content_icon_fig">
-				<img src="<?php echo JURI::root()."administrator/components/com_kelpie/assets/images/addcategory.png";?>">
+				<a href="index.php?option=com_kelpie&view=category&layout=edit">
+					<img src="<?php echo JURI::root()."administrator/components/com_kelpie/assets/images/addcategory.png";?>">
 				<span>Add Category</span>
+				</a>
 			</div>
 			<div class="kelpie_content_icon_fig">
 				<img src="<?php echo JURI::root()."administrator/components/com_kelpie/assets/images/config.png";?>">
 				<span>Add Config</span>
 			</div>
 			<div class="kelpie_content_icon_fig">
+				<a href="index.php?option=com_kelpie&view=players">
 				<img src="<?php echo JURI::root()."administrator/components/com_kelpie/assets/images/player.png";?>">
 				<span>Player</span>
+				</a>
 			</div>
 			<div class="kelpie_content_icon_fig">
 				<img src="<?php echo JURI::root()."administrator/components/com_kelpie/assets/images/unlock.png";?>">
@@ -135,12 +140,11 @@ $doc->addScript( JURI::root()."administrator/components/com_kelpie/assets/js/kel
       <div id="collapse2" class="panel-collapse collapse">
         <div class="panel-body">
 			<table>
+				<?php foreach(KelpieModelDashBoard::getLastestVideos() as $video):?>
 				<tr>
-					<td> <span class="glyphicon glyphicon-user"></span><a href="http://www.jquery2dotnet.com">Customers</a></td>
+					<td><a href="index.php?option=com_kelpie&view=video&layout=edit&id=<?php echo $video->id;?>"><?php echo $video->title_video;?></a></td>
 				</tr>
-				<tr>
-					<td>ff</td>
-				</tr>
+				<?php endforeach;?>
 			</table>
 		
 		</div>
@@ -148,7 +152,7 @@ $doc->addScript( JURI::root()."administrator/components/com_kelpie/assets/js/kel
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Most Viewed Videos3</a>
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Most Viewed Videos</a>
         </h4>
       </div>
       <div id="collapse3" class="panel-collapse collapse">

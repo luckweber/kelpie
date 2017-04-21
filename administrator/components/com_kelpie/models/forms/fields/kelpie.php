@@ -17,7 +17,7 @@ JFormHelper::loadFieldClass('list');
  *
  * @since  0.0.1
  */
-class JFormFieldHelloWorld extends JFormFieldList
+class JFormFieldKelpie extends JFormFieldList
 {
 	/**
 	 * The field type.

@@ -24,7 +24,7 @@ JHtml::_('formbehavior.chosen', 'select');
 $listOrder     = $this->escape($this->filter_order);
 $listDirn      = $this->escape($this->filter_order_Dir);
 
-
+JFormHelper::addFieldPath(JPATH_COMPONENT . '/models/fields');
 $doc = JFactory::getDocument();
 $doc->addStyleSheet( JURI::root()."administrator/components/com_kelpie/assets/css/kelpie.css", "text/css", "screen" );
 $doc->addScript( JURI::root()."administrator/components/com_kelpie/assets/js/kelpie.js" );
@@ -54,12 +54,20 @@ $doc->addScript( JURI::root()."administrator/components/com_kelpie/assets/js/kel
 					array('view' => $this)
 				);
 				
+				$aa = 'filter.catid';
 				
+				if(empty($this->state->$aa)){
+					$cat = "";
+				}else{
+					$cat = $this->state->$aa;
+				}
 			?>
 			
-				<?php echo KelpieModelVideos::ListCategories( 'filter[catid]', '', 'class="required"' ); ?>
 			
 			
+			
+		<?php echo KelpieModelVideos::ListCategories2('',$cat)?>
+
 		</div>
 	</div>
 	<table class="table table-striped table-hover">
@@ -108,6 +116,8 @@ $doc->addScript( JURI::root()."administrator/components/com_kelpie/assets/js/kel
 							<a href="<?php echo $link; ?>" title="<?php echo JText::_('COM_HELLOWORLD_EDIT_HELLOWORLD'); ?>">
 								<?php echo $row->title_video; ?>
 							</a>
+							
+							<?php echo "<br>".JText::_( 'JCATEGORY' ).": ".$row->category_title; ?>
 						</td>
 						<td align="center">
 							<?php echo JHtml::_('jgrid.published', $row->published, $i, 'videos.', true, 'cb'); ; ?>

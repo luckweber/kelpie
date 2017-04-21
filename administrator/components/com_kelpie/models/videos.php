@@ -62,12 +62,6 @@ class KelpieModelVideos extends JModelList
 		$query->from('#__kp_video AS video');
 		
 		
-		// Filter company
-		$categories= $db->escape($this->getState('filter.company'));
-		if (!empty($company)) {
-			$query->where('(video.catid='.$categories.')');
-		}
-		
 		
 		$query->select('categoria.name AS category_title')
 			->join('LEFT', '#__kp_category AS categoria ON categoria.id = video.catid');
@@ -85,8 +79,8 @@ class KelpieModelVideos extends JModelList
 		$categoryId = $this->getState('filter.catid');
 		
 		
-		if (!empty($search)){
-				$query->where('(video.catid = categoria.id)');
+		if (!empty($categoryId)){
+				$query->where('(categoria.id = ' . $categoryId. ')');
 		}
 
 		
@@ -115,27 +109,7 @@ class KelpieModelVideos extends JModelList
 		return $query;
 	}
 	
-	protected function populateState($ordering = null, $direction = null)
-	{
-		// Initialise variables.
-		$app = JFactory::getApplication('administrator');
- 
-		// Load the filter state.
-		$search = $app->getUserStateFromRequest($this->context.'.filter.search', 'filter_search');
-		//Omit double (white-)spaces and set state
-		$this->setState('filter.search', preg_replace('/\s+/',' ', $search));
- 
-		//Filter (dropdown) state
-		$state = $app->getUserStateFromRequest($this->context.'.filter.state', 'filter_state', '', 'string');
-		$this->setState('filter.state', $state);
- 
-		//Filter (dropdown) company
-		$company= $app->getUserStateFromRequest($this->context.'.filter.cat', 'filter_cat', '', 'string');
-		$this->setState('filter.cat', $company);
- 
-		//Takes care of states: list. limit / start / ordering / direction
-		parent::populateState('video.title_video', 'asc');
-	}
+	
 	
 	public function getItems()
 	{
@@ -218,6 +192,32 @@ class KelpieModelVideos extends JModelList
 		}
 		
 		return JHTML::_( 'select.genericlist', $options, $name, $script, 'value', 'text', $selected );
+
+	}
+	
+	public static function ListCategories2( $name = 'category', $selected = '', $script = '', $exclude_category = '' ) {
+
+		if( 'parent' == $name ) {		
+			$options[] = JHTML::_( 'select.option', 0, '-- '.JText::_( 'ROOT' ).' --' );
+			if( '' == $selected ) $selected = 0;
+		} else {
+			$options[] = JHTML::_( 'select.option', '', JText::_( 'JCATEGORY' ) );
+		}
+		
+		if( ! empty( $exclude_category ) ) {
+			$items = KelpieModelVideos::getCategories( $exclude_category );
+		} else {
+			$items = KelpieModelVideos::getCategories();
+		}
+		
+		foreach( $items as $item ) {
+			$item->treename = JString::str_ireplace( '&#160;', '-', $item->treename );
+			$value = ( 'category' == $name || 'filter_category' == $name ) ? $item->name : $item->id;
+			
+			$options[] = JHTML::_( 'select.option', $item->id, $item->treename );
+		}
+		
+		return JHTML::_( 'select.genericlist', $options, 'filter[catid]', 'onchange="this.form.submit()"', 'value', 'text', $selected,'filter_catid' );
 
 	}
 	

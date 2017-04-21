@@ -33,4 +33,16 @@ class KelpieModelDashBoard extends JModelLegacy {
         return $output;
 		
 	}
+	
+		public static function getLastestVideos() {
+			
+			$db = JFactory::getDBO();
+			$query = 'SELECT * FROM #__kp_video';
+			$query .= ' ORDER BY id ASC LIMIT 0,10';
+			$db->setQuery( $query );
+			$mitems = $db->loadObjectList();
+			
+			return $mitems;
+		}	
+
 }
