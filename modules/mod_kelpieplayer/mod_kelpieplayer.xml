@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="3.1.0" client="site" method="upgrade">
-    <name>Kelpie - Player</name>
+    <name>Kelpie Video Share - Player</name>
     <author>Thiago pereira da Silva</author>
-    <version>1.0.0</version>
-    <description>A simple Hello, World! module.</description>
+    <version>1.2.0</version>
+    <description>Add a Single Video Player in your Module Positions.</description>
     <files>
         <filename>mod_kelpieplayer.xml</filename>
         <filename module="mod_kelpieplayer">mod_kelpieplayer.php</filename>
@@ -15,7 +15,66 @@
      <config>
 		<fields name="params">
 			<fieldset name="basic">
+			
+				<field name="videoid" type="sql" default="0" label="KELPIE_MODULE_VIDEO_SHARE_SELECT_VIDEO" description="KELPIE_MODULE_VIDEO_SHARE_SELECT_VIDEO_DESCRIPTION"  
+					query="select id,title_video from #__kp_video where published=1 order by title_video ASC" key_field="id" value_field="title_video" >
+					  <option value="latest">KELPIE_MODULE_VIDEO_SHARE_LATEST</option>
+					  <option value="random">KELPIE_MODULE_VIDEO_SHARE_RANDOM</option>
+				</field>
 				
+				
+				<field name="catid" type="sql" default="0" label="KELPIE_MODULE_VIDEO_SHARE_SELECT_CATEGORY" description="YENDIF_VIDEO_SHARE_SELECT_VIDEO_DESCRIPTION"  
+					query="select * FROM #__kp_category " key_field="id" value_field="name" >
+					  <option value="">KELPIE_MODULE_VIDEO_SHARE_ALLCATEGORY</option>
+				</field>
+				
+				
+				<field name="show_title" type="list" default="1" label="KELPIE_MODULE_VIDEO_SHARE_VIDEO_TITLE" description="KELPIE_MODULE_VIDEO_SHARE_VIDEO_TITLE_DESCRIPTION">
+				  <option value="1">KELPIE_MODULE_VIDEO_SHARE_SHOW</option>
+				  <option value="0">KELPIE_MODULE_VIDEO_SHARE_HIDE</option>
+				</field>
+				
+				<field name="show_description" type="list" default="1" label="KELPIE_MODULE_VIDEO_SHARE_VIDEO_DESCRIPTION" description="KELPIE_MODULE_VIDEO_SHARE_VIDEO_DESCRIPTION">
+				  <option value="1">KELPIE_MODULE_VIDEO_SHARE_SHOW</option>
+				  <option value="0">KELPIE_MODULE_VIDEO_SHARE_HIDE</option>
+				</field>
+				
+				 <field name="ratio" type="text" label="KELPIE_MODULE_VIDEO_SHARE_RATIO" description="KELPIE_MODULE_VIDEO_SHARE_RATIO_DESCRIPTION" />
+
+				
+			
+				<field type="spacer" class="label hasTooltip" name="skin_settings" label="KELPIE_MODULE_VIDEO_SHARE_SKIN_SETTINGS_DESCRIPTION" />
+				
+				
+				
+				<field name="fullscreen" type="list" default="global" label="KELPIE_MODULE_VIDEO_SHARE_FULLSCREEN" description="KELPIE_MODULE_VIDEO_SHARE_FULLSCREEN_DESCRIPTION">
+				  <option value="global">KELPIE_MODULE_VIDEO_SHARE_GLOBAL</option>
+				  <option value="1">KELPIE_MODULE_VIDEO_SHARE_YES</option>
+				  <option value="0">KELPIE_MODULE_VIDEO_SHARE_NO</option>
+				</field>
+				
+				<field name="download" type="list" default="global" label="KELPIE_MODULE_VIDEO_SHARE_DOWNLOAD" description="KELPIE_MODULE_VIDEO_SHARE_DOWNLOAD_DESCRIPTION">
+				  <option value="global">KELPIE_MODULE_VIDEO_SHARE_GLOBAL</option>
+				  <option value="1">KELPIE_MODULE_VIDEO_SHARE_YES</option>
+				  <option value="0">KELPIE_MODULE_VIDEO_SHARE_NO</option>
+				</field>
+				
+				
+				<field type="spacer" class="label hasTooltip" name="playback_settings" label="KELPIE_MODULE_VIDEO_SHARE_PLAYBACK_SETTINGS_DESCRIPTION" />
+				
+				<field name="engine" type="list" default="global" label="KELPIE_MODULE_VIDEO_SHARE_ENGINE" description="KELPIE_MODULE_VIDEO_SHARE_ENGINE_DESCRIPTION">
+				  <option value="global">KELPIE_MODULE_VIDEO_SHARE_GLOBAL</option>
+				  <option value="html5">KELPIE_MODULE_VIDEO_SHARE_YES</option>
+				  <option value="flash">KELPIE_MODULE_VIDEO_SHARE_NO</option>
+				</field>
+				
+				
+				<field name="volume" type="text" label="KELPIE_MODULE_VIDEO_SHARE_VOLUME" description="KELPIE_MODULE_VIDEO_SHARE_VOLUME_DESCRIPTION" />
+				<field name="autoplay" type="list" default="global" label="KELPIE_MODULE_VIDEO_SHARE_AUTOPLAY" description="KELPIE_MODULE_VIDEO_SHARE_AUTOPLAY_DESCRIPTION">
+				  <option value="global">KELPIE_MODULE_VIDEO_SHARE_GLOBAL</option>
+				  <option value="1">KELPIE_MODULE_VIDEO_SHARE_YES</option>
+				  <option value="0">KELPIE_MODULE_VIDEO_SHARE_NO</option>
+				</field>
 				
 				<field
 					name="listop"
@@ -40,39 +99,11 @@
 					<option value="1">Category</option>
 				</field>
 				
-				<field
-					name="menutype"
-					type="category"
-					label="Categories"
-					description="MOD_MENU_FIELD_MENUTYPE_DESC"
-					extension="com_semanafluminense"
-				/>
-
-				
 
 			</fieldset>
 
 			<fieldset name="advanced">
-				<field
-					name="tag_id"
-					type="text"
-					label="MOD_MENU_FIELD_TAG_ID_LABEL"
-					description="MOD_MENU_FIELD_TAG_ID_DESC"
-				/>
-
-				<field
-					name="class_sfx"
-					type="text"
-					label="MOD_MENU_FIELD_CLASS_LABEL"
-					description="MOD_MENU_FIELD_CLASS_DESC"
-				/>
-
-				<field
-					name="window_open"
-					type="text"
-					label="MOD_MENU_FIELD_TARGET_LABEL"
-					description="MOD_MENU_FIELD_TARGET_DESC"
-				/>
+				
 
 				<field
 					name="layout"

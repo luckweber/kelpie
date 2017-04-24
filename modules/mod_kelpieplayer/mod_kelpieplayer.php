@@ -20,7 +20,8 @@ require_once dirname(__FILE__) . '/helper.php';
 $hello = modKelpiePlayerHelper::getHello($params);
 $list = modKelpiePlayerHelper::getList($params);
 $player = modKelpiePlayerHelper::getPlayer($params);
- 
+$videos = modKelpiePlayerHelper::getVideos($params); 
+$lastest = modKelpiePlayerHelper::getLatestVideo($params);
  
 require JModuleHelper::getLayoutPath('mod_kelpieplayer');
 

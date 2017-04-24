@@ -7,13 +7,12 @@ $doc = JFactory::getDocument();
 $doc->addStyleSheet( JURI::root()."administrator/components/com_kelpie/assets/css/kelpie_player.css" );
 
 
+$videoid = $params->get('videoid');
+
 ?>
 <?php //echo $hello; ?>
-
-
-
-<?php //print_r($player);?>
-
+<?php print_r($params->get('videoid'));?>
+<?php print_r($videos);?>
 
 
 <?php foreach($player as $players):?>

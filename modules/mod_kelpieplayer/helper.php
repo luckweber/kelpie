@@ -35,6 +35,70 @@ class ModKelpiePlayerHelper
          return $results;
 
 	 }
+	 
+	 public static function getVideos($params){
+		 $db = JFactory::getDbo();
+		 $query = $db->getQuery(true);
+		 $query->select(array('a.*'))->from($db->quoteName('#__kp_video', 'a'));
+		 
+		 if( $params->get('videoid') != "random" &&  $params->get('videoid') != "latest"){
+			 
+			 if($params->get('catid') == 0){
+				 	$query->where($db->quoteName('a.id') . ' = '. $db->quote($params->get('videoid')));
+					$query->order($db->quoteName('a.created') . ' DESC LIMIT 0,1');
+
+			 }else{
+				 	$query->where($db->quoteName('a.id') . ' = '. $db->quote($params->get('videoid').' and '.$db->quoteName('a.catid') . ' = '. $db->quote($params->get('catid'))));
+					$query->order($db->quoteName('a.created') . ' DESC LIMIT 0,1');
+
+			 }
+			 
+			 
+		 }else if ($params->get('videoid') == "latest"){
+			 if($params->get('catid') == 0){
+				 $query->order($db->quoteName('a.created') . ' DESC LIMIT 0,1');
+
+			 }else{
+				 $query->where($db->quoteName('a.catid') . ' = '. $db->quote($params->get('catid')));
+				 $query->order($db->quoteName('a.created') . ' DESC LIMIT 0,1');
+
+			 }
+		 }
+		 
+		 $db->setQuery($query);
+		 $results = $db->loadObjectList();
+		
+         return $results;
+
+	 }
+	 
+	 
+	 public static function getLatestVideo($params, $limit = ""){
+		 $lastest = ModKelpiePlayerHelper::getVideos($params);
+		 
+		
+		 
+		 /*
+		 function cmp($a, $b) {
+				
+				if (strtotime(date($a->created)) == strtotime(date($b->created))) {
+					return 0;
+				}
+				return (strtotime(date($a->created)) > strtotime(date($b->created))) ? -1 : 1;
+			}
+		 
+		 
+		 usort($lastest, "cmp");
+		 */
+		 
+		 if($limit == ""){
+			 //return $lastest;
+		 }else{
+			 //return $lastest;
+		 }
+		 
+		  return $lastest;
+	 }
 	
 	 public static function getList($params)
     {

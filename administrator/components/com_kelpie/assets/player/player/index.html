@@ -1,0 +1,164 @@
+<html>
+
+<head>
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link rel="stylesheet" href="css/play_style.css" />
+	
+	 
+
+</head>
+
+<body>
+	<div id="player">
+		<div id="screen" class="screen"></div>
+		<div class="bottom">
+			
+			<div id="control_play" class="control_play">
+				<div id="btn_play" class="btn_play"></div>
+				<div id="btn_pause" class="btn_pause"></div>
+			</div>
+			
+			<div id="control_progress" class="control_progress">
+			</div>
+			
+			<div id="control_volume" class="control_volume">
+				<div id="btn_volume" class="btn_volume">
+					<div id="slider_volume" class="slider_volume"></div>				
+				</div>
+				<div id="btn_maxima" class="btn_maxima">
+				</div>
+			</div>
+			
+			
+		</div>
+	</div>
+	
+</body>
+
+<script>
+	  var tag = document.createElement('script');
+	  tag.src = "https://www.youtube.com/player_api";
+	  var firstScriptTag = document.getElementsByTagName('script')[0];
+	  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+	  // Replace the 'ytplayer' element with an <iframe> and
+	  // YouTube player after the API code downloads.
+	  var player;
+	  function onYouTubePlayerAPIReady() {
+		player = new YT.Player('screen', {
+		  height: '360',
+		  width: '640',
+		  videoId: 'M7lc1UVf-VE',
+		  playerVars: { color:'white' ,'autoplay': 0, 'controls': 0,'autohide':1,'wmode':'opaque' }
+		});
+	  }
+	  
+	  $("#btn_play").click(function(){
+	  
+			if(player.getPlayerState() == 5){
+				player.playVideo();	 
+			}else if(player.getPlayerState() == 1){
+				player.pauseVideo(); 
+			}else if(player.getPlayerState() == 2){
+				player.playVideo(); 
+			}
+	  
+	  });
+	  
+	  $("#btn_pause").click(function(){
+			 if(player.getPlayerState() == 5){
+				player.playVideo();	 
+			}else if(player.getPlayerState() == 1){
+				player.pauseVideo(); 
+			}else if(player.getPlayerState() == 2){
+				player.playVideo(); 
+			}
+			
+	  });
+	  
+	  $("#control_progress").slider({
+		  range: "max",
+		  min: 0,
+		  max: 100,
+		  value: 1,
+		  slide: function( event, ui ) {
+			//$( "#amount" ).val( ui.value );
+			if(ui.value >= 100){
+				
+				$("#control_progress .ui-state-default").css("marginLeft", "-45px");
+				
+			}else if (ui.value <= 0){
+			
+				$("#control_progress .ui-state-default").css("marginLeft", "-3px");
+			}
+			
+		  }
+		});
+		
+		$("#slider_volume").slider({
+		  orientation: "vertical",
+		  range: "max",
+		  min: 0,
+		  max: 100,
+		  value: 10,
+		  slide: function( event, ui ) {
+			//$( "#amount" ).val( ui.value );
+			//player.setVolume(ui.value);
+			if(player.isMuted()){
+				player.unMute();
+			}
+			
+			player.setVolume(ui.value);
+		  }
+		});
+		
+		function runEffect(effect) {
+		  // get effect type from
+		  //var selectedEffect = $( "#effectTypes" ).val();
+	 
+		  // Most effect types need no options passed by default
+		  var options = {};
+		  // some effects have required parameters
+		  if ( effect === "scale" ) {
+			options = { percent: 50 };
+		  } else if ( effect === "size" ) {
+			options = { to: { width: 280, height: 185 } };
+		  }
+	 
+		  // Run the effect
+		  $( "#slider_volume" ).show( effect, options, 1000 );
+		};
+		
+		
+		$("#btn_volume").click(function(){
+		
+			if($("#slider_volume").css("display") == "none"){
+				//$("#slider_volume").css("display", "block");
+					runEffect('bounce');
+			}else{
+				$("#slider_volume").css("display", "none");
+			}
+		
+		});
+	  
+	  
+	  setInterval(function(){
+			if(player.getPlayerState() == 1){
+				if($("#player_button_start").hasClass("player_button_play")){
+					$("#player_button_start").removeClass();
+					$("#player_button_start").addClass("player_button_pause");
+				}
+			}else if(player.getPlayerState() == 2){
+				if($("#player_button_start").hasClass("player_button_pause")){
+					$("#player_button_start").removeClass();
+					$("#player_button_start").addClass("player_button_play");
+				}
+			}
+	  }, 40);
+	 
+	</script>
+</html>
