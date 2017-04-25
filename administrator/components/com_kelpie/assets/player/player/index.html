@@ -13,49 +13,49 @@
 </head>
 
 <body>
-	<div id="player">
-		<div id="screen" class="screen"></div>
-		<div class="bottom">
-			
-			<div id="control_play" class="control_play">
-				<div id="btn_play" class="btn_play"></div>
-				<div id="btn_pause" class="btn_pause"></div>
-			</div>
-			
-			<div id="control_progress" class="control_progress">
-			</div>
-			
-			<div id="control_volume" class="control_volume">
-				<div id="btn_volume" class="btn_volume">
-					<div id="slider_volume" class="slider_volume"></div>				
-				</div>
-				<div id="btn_maxima" class="btn_maxima">
-				</div>
-			</div>
-			
-			
-		</div>
-	</div>
+	<div id="player"></div>
+	
+	
 	
 </body>
 
 <script>
-	  var tag = document.createElement('script');
-	  tag.src = "https://www.youtube.com/player_api";
-	  var firstScriptTag = document.getElementsByTagName('script')[0];
-	  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+		$("#player").append(
+				'<div id="screen" class="screen"></div>'+
+				'<div class="bottom">'+
+				'<div id="control_play" class="control_play">'+
+				'<div id="btn_play" class="btn_play"></div>'+
+				'<div id="btn_pause" class="btn_pause"></div>'+
+				'</div>'+
+				'<div id="control_progress" class="control_progress">'+
+				'</div>'+
+				'<div id="control_volume" class="control_volume">'+
+				'<div id="btn_volume" class="btn_volume">'+
+				'<div id="slider_volume" class="slider_volume"></div>'+			
+				'</div>'+
+				'<div id="btn_maxima" class="btn_maxima">'+
+				'</div>'+
+				'</div>'+
+				'</div>');
+		
+	  		
+		var volume = 10;
+		var tag = document.createElement('script');
+		tag.src = "https://www.youtube.com/player_api";
+		var firstScriptTag = document.getElementsByTagName('script')[0];
+		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-	  // Replace the 'ytplayer' element with an <iframe> and
-	  // YouTube player after the API code downloads.
-	  var player;
-	  function onYouTubePlayerAPIReady() {
+		// Replace the 'ytplayer' element with an <iframe> and
+		// YouTube player after the API code downloads.
+		var player;
+		function onYouTubePlayerAPIReady() {
 		player = new YT.Player('screen', {
 		  height: '360',
 		  width: '640',
 		  videoId: 'M7lc1UVf-VE',
-		  playerVars: { color:'white' ,'autoplay': 0, 'controls': 0,'autohide':1,'wmode':'opaque' }
+		  playerVars: { modestbranding:1, color:'white' ,'autoplay': 0, 'controls': 0,'autohide':1,'wmode':'opaque' }
 		});
-	  }
+		}
 	  
 	  $("#btn_play").click(function(){
 	  
@@ -99,12 +99,14 @@
 		  }
 		});
 		
+		
+		
 		$("#slider_volume").slider({
 		  orientation: "vertical",
 		  range: "max",
 		  min: 0,
 		  max: 100,
-		  value: 10,
+		  value: volume,
 		  slide: function( event, ui ) {
 			//$( "#amount" ).val( ui.value );
 			//player.setVolume(ui.value);
@@ -151,12 +153,16 @@
 				if($("#player_button_start").hasClass("player_button_play")){
 					$("#player_button_start").removeClass();
 					$("#player_button_start").addClass("player_button_pause");
+					
 				}
 			}else if(player.getPlayerState() == 2){
 				if($("#player_button_start").hasClass("player_button_pause")){
 					$("#player_button_start").removeClass();
 					$("#player_button_start").addClass("player_button_play");
 				}
+			}else if(player.getPlayerState() == 3){
+				
+				$("#slider_volume").slider({value:player.getVolume()});
 			}
 	  }, 40);
 	 
