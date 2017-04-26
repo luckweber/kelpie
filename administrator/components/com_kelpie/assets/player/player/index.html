@@ -28,6 +28,7 @@
 				'<div id="btn_pause" class="btn_pause"></div>'+
 				'</div>'+
 				'<div id="control_progress" class="control_progress">'+
+				'<div id="duration" class="duration">00:00:00 / 00:00:00</div>'+
 				'</div>'+
 				'<div id="control_volume" class="control_volume">'+
 				'<div id="btn_volume" class="btn_volume">'+
@@ -52,10 +53,21 @@
 		player = new YT.Player('screen', {
 		  height: '360',
 		  width: '640',
-		  videoId: 'M7lc1UVf-VE',
-		  playerVars: { modestbranding:1, color:'white' ,'autoplay': 0, 'controls': 0,'autohide':1,'wmode':'opaque' }
+		  videoId: 'QbfK1B_fSik',
+		  playerVars: { modestbranding:1, color:'white' ,'autoplay': 0, 'controls': 0,'autohide':1,'wmode':'opaque' },
+		  events: {
+			'onReady': onPlayerReady
+			}
 		});
 		}
+		
+		
+		function onPlayerReady(event) {
+		  event.target.setVolume(1);
+		}
+		
+		//player.setVolume('10');
+
 	  
 	  $("#btn_play").click(function(){
 	  
@@ -68,6 +80,7 @@
 			}
 	  
 	  });
+	  
 	  
 	  $("#btn_pause").click(function(){
 			 if(player.getPlayerState() == 5){
@@ -119,10 +132,6 @@
 		});
 		
 		function runEffect(effect) {
-		  // get effect type from
-		  //var selectedEffect = $( "#effectTypes" ).val();
-	 
-		  // Most effect types need no options passed by default
 		  var options = {};
 		  // some effects have required parameters
 		  if ( effect === "scale" ) {
@@ -146,7 +155,7 @@
 			}
 		
 		});
-	  
+	  var porcenge = 0;
 	  
 	  setInterval(function(){
 			if(player.getPlayerState() == 1){
@@ -155,12 +164,40 @@
 					$("#player_button_start").addClass("player_button_pause");
 					
 				}
+				
+				var date = new Date(null);
+				date.setSeconds(player.getDuration());
+				var utc = date.toUTCString();
+				
+				var date2 = new Date(null);
+				date2.setSeconds(player.getCurrentTime());
+				var utc2 = date2.toUTCString();
+				
+				var totalTime = date.getUTCHours()+":"+date.getUTCMinutes()+":"+date.getUTCSeconds();
+				var durationTime= date2.getUTCHours()+":"+date2.getUTCMinutes()+":"+date2.getUTCSeconds();
+				
+				
+				var minutes = Math.ceil(player.getDuration() / 60);
+				var minuteCurrent = Math.ceil(player.getCurrentTime()/60);
+				
+				$("#duration").html(durationTime+" / "+totalTime);
+				
+				
+				$("#control_progress").slider({value:minuteCurrent});
+
+				
+				//$("#control_progress").slider({value:timeFinal});
+
+				
 			}else if(player.getPlayerState() == 2){
 				if($("#player_button_start").hasClass("player_button_pause")){
 					$("#player_button_start").removeClass();
 					$("#player_button_start").addClass("player_button_play");
 				}
 			}else if(player.getPlayerState() == 3){
+				//var minutes = Math.floor(player.getDuration() / 60);
+		        
+				
 				
 				$("#slider_volume").slider({value:player.getVolume()});
 			}

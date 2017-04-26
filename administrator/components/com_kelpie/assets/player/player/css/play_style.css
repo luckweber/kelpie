@@ -683,7 +683,16 @@
     /* Medium Devices, Desktops */
     @media only screen and (min-width : 992px) {
 		body{
-			background-color:gray;
+			background-color:black;
+		}
+		
+		.duration{
+			color:white;
+			position: relative;
+			left: -17px;
+			top: -11px;
+			font-size: 12px;
+			font-weight: bold;
 		}
 		
 			.player {
