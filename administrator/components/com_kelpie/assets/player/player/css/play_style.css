@@ -235,10 +235,10 @@
     /* Extra Small Devices, Phones */ 
     @media only screen and (min-width : 480px) {
 		body{
-			background-color:green;
+			background-color:pink;
 		}
 		
-			.player {
+		.player {
 		width:800px;
 		height:800px;
 		background-color:red;

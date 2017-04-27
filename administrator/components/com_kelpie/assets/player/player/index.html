@@ -109,6 +109,19 @@
 				$("#control_progress .ui-state-default").css("marginLeft", "-3px");
 			}
 			
+			if(player.getPlayerState() == 1 || player.getPlayerState() == 2){
+				
+				
+				var totalMinuto = (player.getDuration() / 60).toFixed(2);
+				var currentMinuto  =  totalMinuto/100;
+				var finalMinuto = currentMinuto*ui.value;
+				
+				//$("#duration").html(finalMinuto);
+				player.seekTo((finalMinuto*60), true);
+				
+				//player.pauseVideo();
+			}
+			
 		  }
 		});
 		
@@ -121,12 +134,9 @@
 		  max: 100,
 		  value: volume,
 		  slide: function( event, ui ) {
-			//$( "#amount" ).val( ui.value );
-			//player.setVolume(ui.value);
 			if(player.isMuted()){
 				player.unMute();
 			}
-			
 			player.setVolume(ui.value);
 		  }
 		});
@@ -140,7 +150,6 @@
 			options = { to: { width: 280, height: 185 } };
 		  }
 	 
-		  // Run the effect
 		  $( "#slider_volume" ).show( effect, options, 1000 );
 		};
 		
@@ -148,7 +157,6 @@
 		$("#btn_volume").click(function(){
 		
 			if($("#slider_volume").css("display") == "none"){
-				//$("#slider_volume").css("display", "block");
 					runEffect('bounce');
 			}else{
 				$("#slider_volume").css("display", "none");
@@ -156,6 +164,58 @@
 		
 		});
 	  var porcenge = 0;
+	  
+	  
+	  
+	  $("body").on("mousedown", ".ui-slider-handle",function(){
+			if(player.getPlayerState() == 1){
+				
+				player.pauseVideo();
+			}
+	  
+	  });
+	  
+	  
+	  $("body").on("mouseup", ".ui-slider-handle",function(){
+	  
+		 if(player.getPlayerState() == 2){
+				
+				player.playVideo();
+			}
+	  
+	  });
+	  
+	  
+	  $(".btn_maxima").click(function(){
+		var Height      =    $(".bottom").height();
+		var marginHeight = $(document).height() ;
+		
+		var finalHeight  = marginHeight - Height;
+	  
+		$(".screen").css("position", "absolute").css("width", "100%").css("height", "100%");
+		$(".bottom").css("position", "absolute").css("marginTop", finalHeight);
+		
+	  });
+	  
+	  
+	  function createChronos(h, m, s){
+		
+		var seconds  = s;
+		var minutes = m;
+		
+		if((seconds.toString()).length == 1){
+			seconds = "0"+ seconds;
+		}
+		
+		if((minutes.toString()).length == 1){
+			
+			minutes = "0"+minutes;
+		}
+		
+		return h+":"+minutes+":"+seconds;
+		
+	  
+	  }
 	  
 	  setInterval(function(){
 			if(player.getPlayerState() == 1){
@@ -174,32 +234,20 @@
 				var utc2 = date2.toUTCString();
 				
 				var totalTime = date.getUTCHours()+":"+date.getUTCMinutes()+":"+date.getUTCSeconds();
-				var durationTime= date2.getUTCHours()+":"+date2.getUTCMinutes()+":"+date2.getUTCSeconds();
 				
 				
-				var minutes = Math.ceil(player.getDuration() / 60);
-				var minuteCurrent = Math.ceil(player.getCurrentTime()/60);
-				
-				$("#duration").html(durationTime+" / "+totalTime);
-				
-				
-				$("#control_progress").slider({value:minuteCurrent});
-
-				
-				//$("#control_progress").slider({value:timeFinal});
-
+				var minutes = (player.getDuration() / 60).toFixed(2);
+				var minuteCurrent = (player.getCurrentTime()/60).toFixed(2);
+				var media = (minuteCurrent / minutes)*100;
+				$("#duration").html(createChronos(date2.getUTCHours(), date2.getUTCMinutes(), date2.getUTCSeconds())+" / "+totalTime);
+				$("#control_progress").slider({value:media.toFixed(0)});
 				
 			}else if(player.getPlayerState() == 2){
 				if($("#player_button_start").hasClass("player_button_pause")){
 					$("#player_button_start").removeClass();
 					$("#player_button_start").addClass("player_button_play");
 				}
-			}else if(player.getPlayerState() == 3){
-				//var minutes = Math.floor(player.getDuration() / 60);
-		        
-				
-				
-				$("#slider_volume").slider({value:player.getVolume()});
+			}else if(player.getPlayerState() == 3){$("#slider_volume").slider({value:player.getVolume()});
 			}
 	  }, 40);
 	 
