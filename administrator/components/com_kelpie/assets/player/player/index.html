@@ -65,8 +65,6 @@
 		function onPlayerReady(event) {
 		  event.target.setVolume(1);
 		}
-		
-		//player.setVolume('10');
 
 	  
 	  $("#btn_play").click(function(){
@@ -185,16 +183,66 @@
 	  
 	  });
 	  
+	  var screenHeightStart = $(".screen").height();
+	  var screenWidthStart = $(".screen").width();
+	  
+	  var fullScreeen  = false;
 	  
 	  $(".btn_maxima").click(function(){
-		var Height      =    $(".bottom").height();
-		var marginHeight = $(document).height() ;
+		if(fullScreeen == false){
+			var Height      =    $(".bottom").height();
+			var marginHeight = $(document).height() ;
+			
+			var finalHeight  = marginHeight - Height;
+		  
+			//$(".screen").css("position", "absolute").css("width", "100%").css("height", "100%");
+			//$(".bottom").css("position", "absolute").css("marginTop", finalHeight);
+			
+			
+			var viewer = document.getElementById("player");
+
+			var rFS = viewer.mozRequestFullScreen || viewer.webkitRequestFullscreen || viewer.requestFullscreen;
+            rFS.call(viewer); 
+			
+			setTimeout(function(){
+			
+				$(".bottom").css("opacity", "0");
+			
+			} ,10000);
+			
+			fullScreeen = true;
+		}else{
+			//$(".screen").css("position", "relative").css("width", screenWidthStart).css("height", screenHeightStart);
+			//$(".bottom").css("position", "relative").css("marginTop", "");
+			
+			var viewer = document.getElementById("player");
+			
+			viewer.mozCancelFullScreen();
+			if(viewer.mozRequestFullScreen){
+				viewer.mozCancelFullScreen();
+				
+				alert("dd");
+			}
+			
+			fullScreeen = false;
+		}
 		
-		var finalHeight  = marginHeight - Height;
+		
+	  });
 	  
-		$(".screen").css("position", "absolute").css("width", "100%").css("height", "100%");
-		$(".bottom").css("position", "absolute").css("marginTop", finalHeight);
-		
+	  
+	  $(".bottom").mouseleave(function(){
+			if(fullScreeen){
+				$(".bottom").css("opacity", "0");
+			}
+	  
+	  });
+	  
+	  $(".bottom").mouseenter(function(){
+			if(fullScreeen){
+				$(".bottom").css("opacity", "1");
+			}
+	  
 	  });
 	  
 	  

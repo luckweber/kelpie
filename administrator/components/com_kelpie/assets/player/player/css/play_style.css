@@ -244,6 +244,43 @@
 		background-color:red;
 		
 	}
+	
+	:-webkit-full-screen #player {
+	  font-size: 20px;
+	  width: 100%;
+	  height:100%;
+	}
+	:-moz-full-screen #player {
+	  font-size: 20px;
+	  width: 100%;
+	  height:100%;
+	}
+	
+	
+	:-moz-full-screen .bottom {
+	  position:absolute;
+	  bottom:0;
+	}
+	
+	:-moz-full-screen #screen {
+	  font-size: 20px;
+	  width: 100%;
+	  height:100%;
+	}
+	
+	
+	:full-screen #player {
+	  font-size: 20px;
+	  width: 100%;
+	  height:100%;
+	}
+	
+	
+	:ms-fullscreen #player {
+	  font-size: 20px;
+	  width: 100%;
+	  height:100%;
+	}
 
 	.screen{
 		position:relative;
@@ -804,11 +841,11 @@
 	.btn_maxima{
 		position:relative;
 		width:36px;
-		height: 35px;	
-		background-image: url('../img1/btn_pause.png');
+		height: 40px;	
+		background-image: url('../img1/btn_fullscreen.png');
 		background-size: 100% 100%;
 		background-repeat: no-repeat;
-		top: 6px;
+		top: -1px;
 		float: right;
 		border: 0;
 		padding: 0;
