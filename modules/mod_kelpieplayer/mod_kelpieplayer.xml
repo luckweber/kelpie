@@ -11,6 +11,8 @@
         <filename>helper.php</filename>
         <filename>tmpl/default.php</filename>
         <filename>tmpl/index.html</filename>
+		<filename>assets/css</filename>
+		<filename>assets/js</filename>
     </files>
      <config>
 		<fields name="params">

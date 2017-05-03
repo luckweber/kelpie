@@ -2,9 +2,28 @@
 // No direct access
 defined('_JEXEC') or die; 
 
+JHtml::_('jquery.framework');
+JHtml::_('bootstrap.framework');
+
+
 $doc = JFactory::getDocument();
-//$doc->addScript( JURI::root()."administrator/components/com_kelpie/assets/js/flashobject.js" );
+//$doc->addScript( JURI::root()."modules/mod_kelpieplayer/assets/js/playerjs.js" );
+
+
+//$doc->addScript( JURI::root()."administrator/components/com_kelpie/assets/js/jquery-3.2.1.min.js" );
+//$doc->addScript( JURI::root()."administrator/components/com_kelpie/assets/js/jquery-ui.js" );
+//$doc->addScript( JURI::root()."administrator/components/com_kelpie/assets/js/playerjs.js" );
+
+
+
 $doc->addStyleSheet( JURI::root()."administrator/components/com_kelpie/assets/css/kelpie_player.css" );
+
+$doc->addStyleSheet( JURI::root()."modules/mod_kelpieplayer/assets/css/play_style.css" );
+
+echo "<script src='".JURI::root()."modules/mod_kelpieplayer/assets/js/jquery-3.2.1.min.js'></script>";
+echo "<script src='".JURI::root()."modules/mod_kelpieplayer/assets/js/jquery-ui.js'></script>";
+echo "<script src='".JURI::root()."modules/mod_kelpieplayer/assets/js/playerjs.js'></script>";
+
 
 
 $videoid = $params->get('videoid');
@@ -14,6 +33,20 @@ $videoid = $params->get('videoid');
 <?php print_r($params->get('videoid'));?>
 <?php print_r($videos);?>
 
+	<div id="player"></div>
+
+
+<?php
+
+ echo "<script>
+	   jQuery(function($) {
+		   $('#player').kelpie('youtube',{
+				color:'dd',
+				url:'Q36K8LuZhyw'
+			});
+	   })
+	
+</script>";?>
 
 <?php foreach($player as $players):?>
 
