@@ -6,12 +6,13 @@
             // These are the defaults.
             color: "#556b2f",
             backgroundColor: "white",
-			url:"dd"
+			url:"dd",
+			autoplay:false,
+			volume:100,
+			ratio:1
 			
         }, options );
 		
-		
-		//alert(settings.url);
 		
 		
         if(type == 'youtube'){
@@ -42,14 +43,15 @@
 				firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 				
 				var player;
-				var volume = 10;
+				var volume = 100;
+				
 				
 				window.onYouTubeIframeAPIReady = function () {
 					player = new YT.Player('screen', {
 					  height: '360',
 					  width: '640',
 					  videoId:settings.url,
-					  playerVars: {'allowfullscreen':0, 'rel':0, 'fs':0, 'showinfo': 0,  'modestbranding':1, 'color':'white' ,'autoplay': 0, 'controls': 0,'autohide':1,'wmode':'opaque' },
+					  playerVars: {'allowfullscreen':0, 'rel':0, 'fs':0, 'showinfo': 0,  'modestbranding':1, 'color':'white' ,'autoplay': settings.autoplay, 'controls': 0,'autohide':1,'wmode':'opaque' },
 						  events: {
 							'onReady': onPlayerReady
 							}
@@ -58,7 +60,7 @@
 				
 				
 				function onPlayerReady(event) {
-					event.target.setVolume(100);
+					event.target.setVolume(settings.volume);
 					setVolume();
 				}
 				
@@ -91,7 +93,6 @@
 				  max: 100,
 				  value: 1,
 				  slide: function( event, ui ) {
-					//$( "#amount" ).val( ui.value );
 					if(ui.value >= 100){
 						
 						$("#control_progress .ui-state-default").css("marginLeft", "-45px");
@@ -108,10 +109,8 @@
 						var currentMinuto  =  totalMinuto/100;
 						var finalMinuto = currentMinuto*ui.value;
 						
-						//$("#duration").html(finalMinuto);
 						player.seekTo((finalMinuto*60), true);
 						
-						//player.pauseVideo();
 					}
 					
 				  }
@@ -302,13 +301,21 @@
 			screen.attr("width","100%");
 			screen.attr("height","100%");
 			
+			
 			var source = $("<source/>");
-			source.attr("src","video/video.mp4");
+			source.attr("src",settings.url);
 			
 			screen.append(source);
 			
+			
+			
 			$(".bottom").before(screen);
 			var myVideo = document.getElementById("screen"); 
+			
+			
+			myVideo.volume =  settings.volume/100;
+			myVideo.autoplay = settings.autoplay;
+			myVideo.load();
 			
 			$("#btn_play").click(function(){
 				if (myVideo.paused){
@@ -323,7 +330,7 @@
 				  range: "max",
 				  min: 0,
 				  max: 100,
-				  value: volume,
+				  value: settings.volume,
 				  slide: function( event, ui ) {
 					if(myVideo.muted){
 						myVideo.volume = ui.value/100;
@@ -434,33 +441,20 @@
 			  
 			});
 			
+			
 			$("#control_progress").slider({
 			  range: "max",
 			  min: 0,
 			  max: 100,
 			  value: 1
 			});
+
 			
 			
 			
 			myVideo.onplay = function() {
-				/*
-					$("#control_progress").slider({
-						  range: "max",
-						  min: 0,
-						  max: 100,
-						  value: 1,
-						  slide: function( event, ui ) {
-							
-							var totalMinuto = (myVideo.duration / 60).toFixed(2);
-							var currentMinuto  =  totalMinuto/100;
-							var finalMinuto = currentMinuto*ui.value;
-							myVideo.currentTime = (finalMinuto*60);
-								
-						  }
-					});
 				
-				*/
+				myVideo.playbackRate = settings.ratio;
 				
 					setInterval(function(){
 						
@@ -481,6 +475,7 @@
 						
 						var totalTime = duration.getUTCHours()+":"+duration.getUTCMinutes()+":"+duration.getUTCSeconds();
 						$("#duration").html(createChronos(date2.getUTCHours(), date2.getUTCMinutes(), date2.getUTCSeconds())+" / "+totalTime);
+						
 						$("#control_progress").slider({
 							
 							value:media,

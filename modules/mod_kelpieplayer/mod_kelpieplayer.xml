@@ -11,8 +11,9 @@
         <filename>helper.php</filename>
         <filename>tmpl/default.php</filename>
         <filename>tmpl/index.html</filename>
-		<filename>assets/css</filename>
-		<filename>assets/js</filename>
+		<folder>assets/css</folder>
+		<folder>assets/js</folder>
+		<folder>assets/img</folder>
     </files>
      <config>
 		<fields name="params">
@@ -36,7 +37,7 @@
 				  <option value="0">KELPIE_MODULE_VIDEO_SHARE_HIDE</option>
 				</field>
 				
-				<field name="show_description" type="list" default="1" label="KELPIE_MODULE_VIDEO_SHARE_VIDEO_DESCRIPTION" description="KELPIE_MODULE_VIDEO_SHARE_VIDEO_DESCRIPTION">
+				<field name="show_description" type="list" default="0" label="KELPIE_MODULE_VIDEO_SHARE_VIDEO_DESCRIPTION" description="KELPIE_MODULE_VIDEO_SHARE_VIDEO_DESCRIPTION">
 				  <option value="1">KELPIE_MODULE_VIDEO_SHARE_SHOW</option>
 				  <option value="0">KELPIE_MODULE_VIDEO_SHARE_HIDE</option>
 				</field>

@@ -5,18 +5,22 @@
 
 	#player:-webkit-full-screen {
 	  width: 100% !important;
+	  height:100% !important;
 	  border:0 !important;
 	}
 	#player:-moz-full-screen {
 	  width: 100% !important;
+	  height:100% !important;
 	  border:0 !important;
 	}
 	#player:-ms-fullscreen {
 	  width: 100% !important;
+	  height:100% !important;
 	  border:0 !important;
 	}
 	#player:fullscreen {
 	  width: 100% !important;
+	  height:100% !important;
 	  border:0 !important;
 	}
 	
@@ -709,7 +713,7 @@
 			color:white;
 			position: relative;
 			left: -17px;
-			top: -11px;
+			top: -15px;
 			font-size: 12px;
 			font-weight: bold;
 		}
@@ -720,30 +724,96 @@
 		background-color:red;
 		
 	}
-
+			
+			
+	#player{
+		position: relative;
+		/*! top: 0; */
+    /*! bottom: 0; */
+    /*! left: 0; */
+    /*! right: 0; */
+		height: 100%;
+		width: 100%;
+		background-color: red;
+		/*! display: table; */
+		overflow: hidden;
+	}
+			
+	
 	.screen{
 		position:relative;
 		width:100%;
-		height:80%;
+		min-height:509px;
 		background-color:black;
-		float:left;
+		/*! float:left; */
 		top:0;
 		left:0;
+		/*! display: table-row; */
+	}
+			
+			
+	#player:-moz-full-screen {
+		position: absolute !important;
+	  width: 100% !important;
+	  height:100% !important;
+		background-color:blue;
+	}			
+			
+	#player:-moz-full-screen .screen {
+		position: absolute !important;
+	  width: 100% !important;
+	  height:100% !important;
+		
+			
+	}	
+		
+	#player:-moz-full-screen .bottom {
+		position: fixed  !important;
+	  width: 98% !important;
+	  height:50px !important;
+	  left: 0;
+    top: calc(100% - 50px);
+	}		
+			
+			
+		#player:-webkit-full-screen {
+		position: absolute !important;
+	  width: 100% !important;
+	  height:100% !important;
+		background-color:blue;
+	}			
+			
+	#player:-webkit-full-screen .screen {
+		position: absolute !important;
+	  width: 100% !important;
+	  height:100% !important;
+		
+			
+	}	
+		
+	#player:-webkit-full-screen .bottom {
+		position: fixed  !important;
+	  width: 98% !important;
+	  height:50px !important;
+	  left: 0;
+    top: calc(100% - 50px);
 	}
 
 	.bottom{
-		position:relative;
+		/*! position:absolute; */
 		width:100%;
 		height: 50px;
-		/*! background-color: rgb(112, 112, 112); */
+		background-color: rgb(112, 112, 112);
 		background-image: url('../img/bar.png');
 		background-size: 100% 100%;
 		background-repeat: no-repeat;
 		border:0;
 		padding: 0;
-		float:left;
-		top:0;
-		left:0;
+		/*! float:left; */
+		/*! top:-150%; */
+		/*! left:0; */
+		/*! margin-top: -10%; */
+		display: table-row;
 	}
 
 	.control_play {
@@ -878,11 +948,11 @@
 
 	.control_progress{
 		min-width: 60%;
-		height: 33px;
+		height: 28px;
 		float: left;
 		position: relative;
 		/*! margin-left: 176px; */
-		top: 10px;
+		top: 12px;
 		/*! left: -80px; */
 		background-image: url('../img/background1.png');
 		background-color: transparent;
