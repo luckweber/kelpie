@@ -37,32 +37,45 @@ $doc = JFactory::getDocument();
 		<div class="row-fluid">
 			<div class="span9">
 				<div class="form-vertical">
-					<div id="list_video_option">
-						<div>
-								
-						</div>
-						<div>
-
-						</div>
-					</div>	
 					
 					<?php echo $this->form->renderField('width'); ?>
 					<?php echo $this->form->renderField('height'); ?>
 					
 				</div>
 			</div>
-			<div class="span3">
-				<?php echo JLayoutHelper::render('joomla.edit.global', $this); ?>
-
-			</div>
 			
-			<div class="span2">
+				<div class="span3">
+					<?php echo JLayoutHelper::render('joomla.edit.global', $this); ?>
+
+				</div>
 				
+		</div>
+		
+		<?php echo JHtml::_('bootstrap.endTab'); ?>
+		
+		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'skins_settings', JText::_('COM_KELPIE_PLAYER_SKINS_SETTINGS')); ?>
+		<div class="row-fluid">
+			<div class="span9">
+				<div class="form-vertical">
+					<?php echo $this->form->renderField('fullscreendock'); ?>
 
-
+				</div>
 			</div>
 		</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
+		
+		
+		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'playback_settings', JText::_('COM_KELPIE_PLAYER_PLAYBACK_SETTINGS')); ?>
+		<div class="row-fluid">
+			<div class="span9">
+				<div class="form-vertical">
+					<?php echo $this->form->renderField('volumelevel'); ?>
+					<?php echo $this->form->renderField('autostart'); ?>
+				</div>
+			</div>
+		</div>
+		<?php echo JHtml::_('bootstrap.endTab'); ?>
+
 		
         </fieldset>
     </div>

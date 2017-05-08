@@ -17,6 +17,41 @@
 				
 				
 				<field
+					name="volumelevel"
+					type="text"
+					label="COM_KELPIE_PLAYER_VOLUME"
+					description="COM_KELPIE_PLAYER_VOLUME_DESC"
+					size="40"
+					class="inputbox"
+					default=""
+				/>
+				
+				
+				<field
+					id="autostart"
+					name="autostart"
+					type="list"
+					label="COM_KELPIE_PLAYER_AUTOSTART"
+					description="COM_KELPIE_PLAYER_AUTOSTART_DESC"
+					class="chzn-color-state">
+					<option value="1">YES</option>
+					<option value="0">NO</option>
+				</field>
+				
+				
+				<field
+					id="fullscreendock"
+					name="fullscreendock"
+					type="list"
+					label="COM_KELPIE_PLAYER_FULLSCREEN"
+					description="COM_KELPIE_PLAYER_FULLSCREEN_DESC"
+					class="chzn-color-state">
+					<option value="1">YES</option>
+					<option value="0">NO</option>
+				</field>
+					
+				
+				<field
 					name="width"
 					type="text"
 					label="COM_KELPIE_PLAYER_WIDTH"
@@ -48,12 +83,15 @@
 					<option value="html5">HTML5</option>
 				</field>
 				
+				
+				
+				
 			
 				
 				
 				
 				
-		<field
+			<field
 				name="id"
 				type="text"
 				label="COM_SEMANAFLUMINENSE_SEMANAFLUMINENSE_INCRICAO_POESIA"
@@ -62,7 +100,9 @@
 				class="readonly"
 				readonly="true"
 				default=""
-				/>
+			/>
+			
+			
 
 				
 	
